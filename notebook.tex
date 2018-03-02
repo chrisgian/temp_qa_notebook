@@ -1,0 +1,1068 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{qa\_transaction\_detail\_first\_batch}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \section{Goal of this notebook:}\label{goal-of-this-notebook}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  High-Level Checks of the dataset
+
+  \begin{itemize}
+  \tightlist
+  \item
+    d
+  \item
+    s
+  \end{itemize}
+\item
+  Look column by column
+
+  \begin{itemize}
+  \tightlist
+  \item
+    d
+  \item
+    f
+  \end{itemize}
+\end{enumerate}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+        \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+        \PY{k+kn}{from} \PY{n+nn}{datetime} \PY{k}{import} \PY{n}{datetime}
+        \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+        \PY{o}{\PYZpc{}} \PY{n}{matplotlib} \PY{n}{inline}
+        
+        \PY{n}{data} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{transactions\PYZus{}first\PYZus{}batch.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{low\PYZus{}memory} \PY{o}{=} \PY{k+kc}{False}\PY{p}{,} \PY{n}{dtype}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{O}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \subsection{1. Data Overview}\label{data-overview}
+
+\begin{itemize}
+\tightlist
+\item
+  Check number of records:
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Rows: }\PY{l+s+si}{\PYZpc{}i}\PY{l+s+s2}{ Columns: }\PY{l+s+si}{\PYZpc{}i}\PY{l+s+s2}{ before NUll Drop}\PY{l+s+s2}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{n}{data}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Rows: }\PY{l+s+si}{\PYZpc{}i}\PY{l+s+s2}{ Columns: }\PY{l+s+si}{\PYZpc{}i}\PY{l+s+s2}{ After NUll Drop}\PY{l+s+s2}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{n}{data}\PY{o}{.}\PY{n}{dropna}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Rows: 88310 Columns: 8 before NUll Drop
+Rows: 87530 Columns: 8 After NUll Drop
+
+    \end{Verbatim}
+
+    \begin{itemize}
+\tightlist
+\item
+  Check the number of unique Items across all columns.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{Note:} Commitee\_ID is 104, I expected 100
+  \end{itemize}
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{n}{data}\PY{o}{.}\PY{n}{apply}\PY{p}{(}\PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{n+nb}{len}\PY{p}{(}\PY{n+nb}{set}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}5}]:} Tran ID              88310
+        Tran Date             4101
+        Status                   2
+        Filer/Committee        142
+        Contributor/Payee    19501
+        Sub Type                29
+        Amount               14639
+        committee\_id           104
+        dtype: int64
+\end{Verbatim}
+            
+    \begin{itemize}
+\tightlist
+\item
+  Check the number of Nulls:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Note: The only column with null values is 780. Additional
+    exploration later in this notebook.
+  \end{itemize}
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{n+nb}{len}\PY{p}{(}\PY{n}{data}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{data}\PY{o}{.}\PY{n}{count}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}6}]:} Tran ID                0
+        Tran Date              0
+        Status                 0
+        Filer/Committee        0
+        Contributor/Payee    780
+        Sub Type               0
+        Amount                 0
+        committee\_id           0
+        dtype: int64
+\end{Verbatim}
+            
+    \begin{itemize}
+\tightlist
+\item
+  Look at first and last five
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{n}{data} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{transactions\PYZus{}first\PYZus{}batch.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{low\PYZus{}memory} \PY{o}{=} \PY{k+kc}{False}\PY{p}{,} \PY{n}{dtype}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{O}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{data}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{data}\PY{o}{.}\PY{n}{tail}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}7}]:}        Tran ID   Tran Date    Status  \textbackslash{}
+        0      1454151  01/24/2013  Original   
+        1       968825  11/30/2010  Original   
+        2       934239  10/18/2010  Original   
+        3       934242  10/18/2010  Original   
+        4       934247  10/18/2010  Original   
+        88305    26967  12/21/2006  Original   
+        88306    29612  12/21/2006   Amended   
+        88307    16136  12/05/2006  Original   
+        88308    16135  12/01/2006  Original   
+        88309    15872  11/29/2006  Original   
+        
+                                         Filer/Committee  \textbackslash{}
+        0                Speech Hearing Action Committee   
+        1                Speech Hearing Action Committee   
+        2                Speech Hearing Action Committee   
+        3                Speech Hearing Action Committee   
+        4                Speech Hearing Action Committee   
+        88305  Lee, Charles E., for State Representative   
+        88306  Lee, Charles E., for State Representative   
+        88307  Lee, Charles E., for State Representative   
+        88308  Lee, Charles E., for State Representative   
+        88309  Lee, Charles E., for State Representative   
+        
+                                               Contributor/Payee  \textbackslash{}
+        0            Sara Gelser for State Representative (4680)   
+        1             Oregon Speech Language Hearing Association   
+        2               Committee to Elect Dr. Alan Bates (3604)   
+        3                    Frank Morse for State Senate (4335)   
+        4                     Friends of Suzanne Bonamici (5254)   
+        88305  Miscellaneous Personal Expenditures \$100 and u{\ldots}   
+        88306                              Mary E Lee, Treasurer   
+        88307     Miscellaneous Cash Expenditures \$100 and under   
+        88308     Miscellaneous Cash Expenditures \$100 and under   
+        88309                              Mary E Lee, Treasurer   
+        
+                                             Sub Type   Amount committee\_id  
+        0                      Lost or Returned Check  \$200.00          255  
+        1                           Cash Contribution   \$53.00          255  
+        2                            Cash Expenditure  \$250.00          255  
+        3                            Cash Expenditure  \$250.00          255  
+        4                            Cash Expenditure  \$200.00          255  
+        88305  Personal Expenditure for Reimbursement   \$31.48         5328  
+        88306                        Cash Expenditure   \$31.48         5328  
+        88307                        Cash Expenditure   \$82.82         5328  
+        88308                        Cash Expenditure   \$80.34         5328  
+        88309                        Cash Expenditure  \$700.00         5328  
+\end{Verbatim}
+            
+    \begin{itemize}
+\tightlist
+\item
+  Clean data so that somes symbols are removed:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{Note}: this might be something we would want to do while
+    pulling data or transforming data for storage
+  \end{itemize}
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{c+c1}{\PYZsh{}\PYZsh{} Amount}
+        \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{,}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{:}
+            \PY{n}{data}\PY{o}{.}\PY{n}{Amount} \PY{o}{=} \PY{n}{data}\PY{o}{.}\PY{n}{Amount}\PY{o}{.}\PY{n}{str}\PY{o}{.}\PY{n}{replace}\PY{p}{(}\PY{n}{i}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+            
+        \PY{n}{data}\PY{o}{.}\PY{n}{Amount} \PY{o}{=} \PY{n}{data}\PY{o}{.}\PY{n}{Amount}\PY{o}{.}\PY{n}{str}\PY{o}{.}\PY{n}{replace}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{(}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{n+nb}{float}\PY{p}{)}
+\end{Verbatim}
+
+
+    \section{2. Columns In Detail}\label{columns-in-detail}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Status Column:} Check of which there are two unique values.
+  What are the proportions?
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} \PY{n}{data}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Status}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}9}]:} Status
+        Amended      1979
+        Original    86331
+        dtype: int64
+\end{Verbatim}
+            
+    \begin{itemize}
+\tightlist
+\item
+  \textbf{Sub Type Column:}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Question: What do each of these relate to? Are some of these
+    categories more important than others?
+  \item
+    \href{http://sos.oregon.gov/elections/Documents/campaign-finance.pdf}{2018
+    Campaign Finance Manual} : Contains definitions for each of these
+    codes:
+  \end{itemize}
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{n}{data}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sub Type}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}10}]:} Sub Type
+         Unexpended Agent Balance                       1
+         Pledge of In-Kind                              3
+         Nonpartisan Activity                           3
+         Loan Received (Exempt)                         3
+         Uncollectible Pledge of Cash                   4
+         Loan Payment (Exempt)                          5
+         In-Kind/Forgiven Account Payable               8
+         Miscellaneous Account Receivable              10
+         Account Payable Rescinded                     11
+         Personal Expenditure Balance Adjustment       11
+         Loan Forgiven (Non-Exempt)                    13
+         Expenditure Made by an Agent                  31
+         Loan Payment (Non-Exempt)                     63
+         Cash Balance Adjustment                       66
+         In-Kind/Forgiven Personal Expenditures        68
+         Miscellaneous Other Disbursement              74
+         Loan Received (Non-Exempt)                    79
+         Pledge of Cash                                96
+         Miscellaneous Other Receipt                  108
+         Return or Refund of Contribution             125
+         Lost or Returned Check                       178
+         Refunds and Rebates                          183
+         Account Payable                              659
+         Items Sold at Fair Market Value              892
+         Interest/Investment Income                  1039
+         In-Kind Contribution                        2714
+         Personal Expenditure for Reimbursement      6357
+         Cash Expenditure                           25656
+         Cash Contribution                          49850
+         dtype: int64
+\end{Verbatim}
+            
+    \begin{itemize}
+\tightlist
+\item
+  \textbf{Contributor/Payee Column:}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Show Top 10
+  \item
+    Show top 10, sort name
+
+    \begin{itemize}
+    \tightlist
+    \item
+      What does ** notation mean mean?
+    \item
+      Question: Is there a way to easily standardize names? Or do we
+      need to fuzzy match?
+    \end{itemize}
+  \item
+    Look at 1\&1 internet.
+  \end{itemize}
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}11}]:} \PY{n}{data}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Contributor/Payee}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}11}]:} Contributor/Payee
+         yvonne tamayo            1
+         Joseph Matarazzo         1
+         Sharon M. Ungerleider    1
+         Sharon Lenz              1
+         Joseph Safirstein        1
+         Sharon L Roy             1
+         Sharon Javna             1
+         Joseph Tennant           1
+         Joseph Weston            1
+         Joseph Young             1
+         dtype: int64
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} \PY{n}{data}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Contributor/Payee}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{sort\PYZus{}index}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}12}]:} Contributor/Payee
+         1 \& 1 Interent                               3
+         1 and 1 Internet, Inc.                       1
+         1\&1 Internet Inc                             1
+         1\&1 Internet Inc.                           19
+         1-800 Contacts, Inc. **                      3
+         111 Investments                              2
+         111th Square, LLC - Sanchez Family Trust     1
+         1430 KYKN                                    1
+         1st Screen Mobile.com                        1
+         200 Market Building                          7
+         dtype: int64
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}13}]:} \PY{c+c1}{\PYZsh{} bring up 1\PYZam{}1 to see if anything interesting shows up}
+         \PY{n}{data}\PY{p}{[}\PY{n}{data}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Contributor/Payee}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{isin}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{1 \PYZam{} 1 Interent}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{1 and 1 Internet, Inc.}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{]}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}13}]:}        Tran ID   Tran Date    Status           Filer/Committee  \textbackslash{}
+         32374  2467683  12/01/2016  Original      People for Libraries   
+         32479  2042190  07/06/2015   Amended      People for Libraries   
+         32541  1765178  07/01/2014  Original      People for Libraries   
+         55683   665243  12/27/2009  Original  Concerned Oregonians PAC   
+         
+                     Contributor/Payee                                Sub Type  Amount  \textbackslash{}
+         32374          1 \& 1 Interent                        Cash Expenditure   52.38   
+         32479          1 \& 1 Interent                        Cash Expenditure   52.38   
+         32541          1 \& 1 Interent  Personal Expenditure for Reimbursement   52.38   
+         55683  1 and 1 Internet, Inc.             Miscellaneous Other Receipt   29.97   
+         
+               committee\_id  
+         32374         6104  
+         32479         6104  
+         32541         6104  
+         55683        12512  
+\end{Verbatim}
+            
+    \begin{itemize}
+\tightlist
+\item
+  \textbf{Contributor/Payee Column (cont):}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Look at Null values across records with and without nulls:
+
+    \begin{itemize}
+    \tightlist
+    \item
+      Note: There seems to be 4 unique subtypes in NULL records while 29
+      (which is the total number of uniques on an unfiltered dataset)
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}14}]:} \PY{n}{null\PYZus{}mask} \PY{o}{=} \PY{n}{data}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Contributor/Payee}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{isnull}\PY{p}{(}\PY{p}{)}
+         \PY{n}{data}\PY{p}{[}\PY{n}{null\PYZus{}mask}\PY{p}{]}\PY{o}{.}\PY{n}{describe}\PY{p}{(}\PY{n}{include} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{all}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}14}]:}        Tran ID Tran Date Status Filer/Committee  Contributor/Payee Sub Type  \textbackslash{}
+         count      780       780    780             780                0.0      780   
+         unique     780       534      2              51                0.0        4   
+         
+                 Amount committee\_id  
+         count    780.0          780  
+         unique     NaN           47  
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}15}]:} \PY{n}{data}\PY{p}{[}\PY{o}{\PYZti{}}\PY{n}{null\PYZus{}mask}\PY{p}{]}\PY{o}{.}\PY{n}{describe}\PY{p}{(}\PY{n}{include} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{all}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}15}]:}        Tran ID Tran Date Status Filer/Committee Contributor/Payee Sub Type  \textbackslash{}
+         count    87530     87530  87530           87530             87530    87530   
+         unique   87530      4100      2             140             19500       29   
+         
+                  Amount committee\_id  
+         count   87530.0        87530  
+         unique      NaN          103  
+\end{Verbatim}
+            
+    \begin{itemize}
+\tightlist
+\item
+  \textbf{Contributor/Payee Column (cont):}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Look at Sub Types of records with NULL (n = 780) in Contributor /
+    Payee and then Non-Null (n = 87530) ..
+
+    \begin{itemize}
+    \tightlist
+    \item
+      Note: The 4 that show up in Null records also show up in non-null
+      records.
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}16}]:} \PY{n}{non\PYZus{}null\PYZus{}subs} \PY{o}{=} \PY{n+nb}{set}\PY{p}{(}\PY{n}{data}\PY{p}{[}\PY{o}{\PYZti{}}\PY{n}{null\PYZus{}mask}\PY{p}{]}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sub Type}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{unique}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Sub Types found in non\PYZhy{}null rows:}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{non\PYZus{}null\PYZus{}subs}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Sub Types found in non-null rows:
+
+ \{'Account Payable Rescinded', 'Pledge of Cash', 'Lost or Returned Check', 'Cash Expenditure', 'Expenditure Made by an Agent', 'Miscellaneous Other Receipt', 'Miscellaneous Account Receivable', 'Nonpartisan Activity', 'Cash Balance Adjustment', 'Pledge of In-Kind', 'Loan Received (Exempt)', 'Account Payable', 'Unexpended Agent Balance', 'Uncollectible Pledge of Cash', 'In-Kind Contribution', 'Return or Refund of Contribution', 'Items Sold at Fair Market Value', 'Personal Expenditure Balance Adjustment', 'Cash Contribution', 'Interest/Investment Income', 'Loan Received (Non-Exempt)', 'Miscellaneous Other Disbursement', 'Refunds and Rebates', 'Loan Payment (Non-Exempt)', 'Personal Expenditure for Reimbursement', 'In-Kind/Forgiven Account Payable', 'In-Kind/Forgiven Personal Expenditures', 'Loan Payment (Exempt)', 'Loan Forgiven (Non-Exempt)'\}
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}17}]:} \PY{n}{null\PYZus{}subs} \PY{o}{=} \PY{n+nb}{set}\PY{p}{(}\PY{n}{data}\PY{p}{[}\PY{n}{null\PYZus{}mask}\PY{p}{]}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sub Type}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{unique}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Sub Types found in records with Null: }\PY{l+s+se}{\PYZbs{}n}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{null\PYZus{}subs}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Sub Types found in records with Null: 
+
+ \{'Personal Expenditure Balance Adjustment', 'Interest/Investment Income', 'Cash Balance Adjustment', 'Items Sold at Fair Market Value'\}
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}18}]:} \PY{n}{both\PYZus{}subs} \PY{o}{=} \PY{n}{non\PYZus{}null\PYZus{}subs}\PY{o}{.}\PY{n}{intersection}\PY{p}{(}\PY{n}{null\PYZus{}subs}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{The following are in both: }\PY{l+s+se}{\PYZbs{}n}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{both\PYZus{}subs}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+The following are in both: 
+
+ \{'Personal Expenditure Balance Adjustment', 'Interest/Investment Income', 'Cash Balance Adjustment', 'Items Sold at Fair Market Value'\}
+
+    \end{Verbatim}
+
+    \begin{itemize}
+\tightlist
+\item
+  \textbf{Amount Column:}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Look at descriptives of "Amount"
+  \end{itemize}
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}19}]:} \PY{n}{data}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Amount}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{describe}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}19}]:} count     88310.000000
+         mean       1116.298991
+         std        7272.454859
+         min      -29525.510000
+         25\%          30.000000
+         50\%         130.000000
+         75\%         500.000000
+         max      592753.650000
+         Name: Amount, dtype: float64
+\end{Verbatim}
+            
+    \begin{itemize}
+\tightlist
+\item
+  \textbf{Amount Column (cont):}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Check how many negative value records -\/- 37 show up.
+  \item
+    Pull up descriptives on those 37 records with a negative amount
+    value:
+  \end{itemize}
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}29}]:} \PY{n}{amt\PYZus{}negative} \PY{o}{=} \PY{n}{data}\PY{p}{[}\PY{n}{data}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Amount}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{\PYZlt{}} \PY{l+m+mi}{0}\PY{p}{]}
+         \PY{n}{amt\PYZus{}positive} \PY{o}{=} \PY{n}{data}\PY{p}{[}\PY{n}{data}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Amount}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{\PYZgt{}} \PY{l+m+mi}{0}\PY{p}{]}
+         
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZsh{} of negative records:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{amt\PYZus{}negative}\PY{p}{)}\PY{p}{)}
+         \PY{n}{amt\PYZus{}negative}\PY{o}{.}\PY{n}{describe}\PY{p}{(}\PY{n}{include} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{all}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+\# of negative records: 37
+
+    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}29}]:}        Tran ID Tran Date Status Filer/Committee Contributor/Payee Sub Type  \textbackslash{}
+         count       37        37     37              37                 5       37   
+         unique      37        32      2              29                 4        2   
+         
+                 Amount committee\_id  
+         count     37.0           37  
+         unique     NaN           28  
+\end{Verbatim}
+            
+    \begin{itemize}
+\tightlist
+\item
+  \textbf{Amount Column (cont):}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    What Sub Type are there for messing values?
+
+    \begin{itemize}
+    \tightlist
+    \item
+      Note: There are two and they both show some sort of adjustment
+      feature. Though I find it strange that Adjustments aren't all
+      "amendments"
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}31}]:} \PY{n}{amt\PYZus{}negative}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sub Type}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{unique}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}31}]:} array(['Personal Expenditure Balance Adjustment', 'Cash Balance Adjustment'], dtype=object)
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}32}]:} \PY{n}{amt\PYZus{}negative}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}32}]:}       Tran ID   Tran Date    Status                         Filer/Committee  \textbackslash{}
+         213   2551881  05/10/2017   Amended  Friends of Clackamas Community College   
+         215   2551883  05/10/2017   Amended  Friends of Clackamas Community College   
+         216   2551884  05/10/2017   Amended  Friends of Clackamas Community College   
+         489   1440832  12/31/2012  Original  Friends of Clackamas Community College   
+         1269     5469  01/25/2007  Original                    Citizens for Schools   
+         
+                            Contributor/Payee                                 Sub Type  \textbackslash{}
+         213                    Jeanne Magmer  Personal Expenditure Balance Adjustment   
+         215             JE Dunn Construction                  Cash Balance Adjustment   
+         216             JE Dunn Construction  Personal Expenditure Balance Adjustment   
+         489   Clackamas Federal Credit Union                  Cash Balance Adjustment   
+         1269                             NaN                  Cash Balance Adjustment   
+         
+                Amount committee\_id  
+         213  -2500.00        11247  
+         215  -6969.93        11247  
+         216   -713.34        11247  
+         489   -198.75        11247  
+         1269    -8.81         5592  
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}33}]:} \PY{n}{amt\PYZus{}negative}\PY{o}{.}\PY{n}{pivot\PYZus{}table}\PY{p}{(}\PY{n}{index} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Status}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{columns} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sub Type}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{values}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Tran ID}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{aggfunc}\PY{o}{=}\PY{p}{[}\PY{n+nb}{len}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{T}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}33}]:} Status                                       Amended  Original
+             Sub Type                                                  
+         len Cash Balance Adjustment                        3        30
+             Personal Expenditure Balance Adjustment        2         2
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}34}]:} \PY{n}{amt\PYZus{}positive}\PY{o}{.}\PY{n}{pivot\PYZus{}table}\PY{p}{(}\PY{n}{index} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Status}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{columns} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sub Type}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{values}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Tran ID}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{aggfunc}\PY{o}{=}\PY{p}{[}\PY{n+nb}{len}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{fillna}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}34}]:}                      len                                                    \textbackslash{}
+         Sub Type Account Payable Account Payable Rescinded Cash Balance Adjustment   
+         Status                                                                       
+         Amended             31.0                       0.0                     3.0   
+         Original           628.0                      11.0                    29.0   
+         
+                                                                                   \textbackslash{}
+         Sub Type Cash Contribution Cash Expenditure Expenditure Made by an Agent   
+         Status                                                                     
+         Amended              821.0            792.0                          0.0   
+         Original           49029.0          24864.0                         31.0   
+         
+                                                                         \textbackslash{}
+         Sub Type In-Kind Contribution In-Kind/Forgiven Account Payable   
+         Status                                                           
+         Amended                 125.0                              1.0   
+         Original               2589.0                              7.0   
+         
+                                                                                     \textbackslash{}
+         Sub Type In-Kind/Forgiven Personal Expenditures Interest/Investment Income   
+         Status                                                                       
+         Amended                                     0.0                        7.0   
+         Original                                   68.0                     1032.0   
+         
+                            {\ldots}                                         \textbackslash{}
+         Sub Type           {\ldots}            Miscellaneous Other Receipt   
+         Status             {\ldots}                                          
+         Amended            {\ldots}                                    9.0   
+         Original           {\ldots}                                   99.0   
+         
+                                                                                \textbackslash{}
+         Sub Type Nonpartisan Activity Personal Expenditure Balance Adjustment   
+         Status                                                                  
+         Amended                   0.0                                     1.0   
+         Original                  3.0                                     6.0   
+         
+                                                                         \textbackslash{}
+         Sub Type Personal Expenditure for Reimbursement Pledge of Cash   
+         Status                                                           
+         Amended                                   103.0            6.0   
+         Original                                 6254.0           90.0   
+         
+                                                         \textbackslash{}
+         Sub Type Pledge of In-Kind Refunds and Rebates   
+         Status                                           
+         Amended                0.0                 3.0   
+         Original               3.0               180.0   
+         
+                                                                                 \textbackslash{}
+         Sub Type Return or Refund of Contribution Uncollectible Pledge of Cash   
+         Status                                                                   
+         Amended                               3.0                          0.0   
+         Original                            122.0                          4.0   
+         
+                                            
+         Sub Type Unexpended Agent Balance  
+         Status                             
+         Amended                       0.0  
+         Original                      1.0  
+         
+         [2 rows x 29 columns]
+\end{Verbatim}
+            
+    \begin{itemize}
+\tightlist
+\item
+  \textbf{Date Column:}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    I had issue converting "Tran Date" to datetime, check for integrity:
+
+    \begin{itemize}
+    \tightlist
+    \item
+      Write a test, take all as a series, run through and attempt
+      convert via to\_datetime
+
+      \begin{itemize}
+      \tightlist
+      \item
+        Note: \textbf{6 Dates are associated with errors:}
+      \end{itemize}
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}123}]:} \PY{n}{test} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{Series}\PY{p}{(}\PY{n}{data}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Tran Date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{unique}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+          \PY{n}{errors} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+          \PY{k}{for} \PY{n}{number}\PY{p}{,}\PY{n}{value} \PY{o+ow}{in} \PY{n}{test}\PY{o}{.}\PY{n}{iteritems}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+              \PY{k}{try}\PY{p}{:} 
+                  \PY{n}{pd}\PY{o}{.}\PY{n}{to\PYZus{}datetime}\PY{p}{(}\PY{n}{value}\PY{p}{)}
+              \PY{k}{except}\PY{p}{:}
+                  \PY{n}{errors}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{p}{[}\PY{n}{number}\PY{p}{,}\PY{n}{value}\PY{p}{]}\PY{p}{)}
+                  
+          \PY{n}{erroneous\PYZus{}date\PYZus{}strings} \PY{o}{=} \PY{p}{[}\PY{n}{i}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n}{errors}\PY{p}{]}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{errors}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[[4057, '05/03/0007'], [4084, '11/03/0209'], [4085, '02/23/0009'], [4086, '03/14/0008'], [4087, '02/19/0007']]
+
+    \end{Verbatim}
+
+    \begin{itemize}
+\tightlist
+\item
+  \textbf{Date Column (cont) :}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Below show erroneous records:
+  \end{itemize}
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}125}]:} \PY{n}{data}\PY{p}{[}\PY{n}{data}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Tran Date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{isin}\PY{p}{(}\PY{n}{erroneous\PYZus{}date\PYZus{}strings}\PY{p}{)}\PY{p}{]}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}125}]:}       Tran ID   Tran Date    Status  \textbackslash{}
+          68927   57262  05/03/0007  Original   
+          81289  640760  11/03/0209  Original   
+          81290  541960  02/23/0009  Original   
+          81291  526699  03/14/0008  Original   
+          81292   39429  02/19/0007  Original   
+          81293   39458  02/19/0007  Original   
+          
+                                               Filer/Committee  \textbackslash{}
+          68927                    Committee To Elect DeShazer   
+          81289  Josephine County Republican Central Committee   
+          81290  Josephine County Republican Central Committee   
+          81291  Josephine County Republican Central Committee   
+          81292  Josephine County Republican Central Committee   
+          81293  Josephine County Republican Central Committee   
+          
+                                                 Contributor/Payee  \textbackslash{}
+          68927     Miscellaneous Cash Expenditures \$100 and under   
+          81289  Miscellaneous In-Kind Contributions \$100 and u{\ldots}   
+          81290    Miscellaneous Cash Contributions \$100 and under   
+          81291    Miscellaneous Cash Contributions \$100 and under   
+          81292                                         Keith Heck   
+          81293                                    Doneta Thomason   
+          
+                                        Sub Type  Amount committee\_id  
+          68927                 Cash Expenditure   20.00         8667  
+          81289             In-Kind Contribution   71.20          319  
+          81290                Cash Contribution   75.00          319  
+          81291                Cash Contribution   80.00          319  
+          81292  Items Sold at Fair Market Value   62.64          319  
+          81293  Items Sold at Fair Market Value   62.64          319  
+\end{Verbatim}
+            
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
